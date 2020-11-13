@@ -6,31 +6,21 @@
 
 */
 static long long factorial(int n);
+int get_integer(const char* msg);
 
 int main() {
 	int n = 0;
 	int k = 0;
-	printf("input n: ");
-	scanf("%d", &n);
+	n = get_integer("input n: ");
+	k = get_integer("input k: ");
 
-	printf("input k: ");
-	scanf("%d", &k);
-	
 	long long result = factorial(n) / factorial(n - k);
 
 	printf("number of placements: %I64d", result);
-	
-	
-
 
 
 	return 0;
 }
-
-
-
-
-
 
 static long long factorial(int n) {
 	long long result = 1;
@@ -42,4 +32,19 @@ static long long factorial(int n) {
 
 	return result;
 
+}
+int get_integer(const char* msg) {
+	char answer[256]; // строка для чтения
+	int n; // итоговое целое число
+
+	printf("%s", msg); // выводим приглашение ко вводу
+	fgets(answer, sizeof(answer), stdin); // считываем строку
+
+	// пока не будет считано целое число
+	while (sscanf(answer, "%d", &n) != 1) {
+		printf("Incorrect input. Try again: "); // выводим сообщение об ошибке
+		fgets(answer, sizeof(answer), stdin); // и заново считываем строку
+	}
+
+	return n; // возвращаем корректное целое число
 }
