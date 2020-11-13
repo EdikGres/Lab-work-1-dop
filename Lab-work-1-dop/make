@@ -1,0 +1,2 @@
+all:
+	gcc  Main.c -o lab01-dop
